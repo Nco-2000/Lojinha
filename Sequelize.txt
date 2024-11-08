@@ -1,0 +1,39 @@
+ORM - Object Relational Mapper (Sequelize)
+MVC - Model/View/Controller
+
+Baixar MySQL: https://dev.mysql.com/downloads/installer/
+
+npm install sequelize -> permite utilizar o pacote e funcionalidades do Sequelize
+
+npm install --save-dev sequelize-cli -> instala o cli do sequelize
+
+npx sequelize-cli init -> Criação de diretórios pradões
+
+npm install mysql2
+
+configurar o config.json
+
+--
+
+npx sequelize db:create -> Cria banco de dados
+
+npx sequelize migration:create --name=create-usuarios -> gera arquivos iniciais do ORM
+
+https://sequelize.org/master/manual/model-basics.html#data-types Tipos de dados sequelize
+
+npx sequelize db:migrate
+Executa todas as migrações não executadas, no banco
+
+SequelizeMeta possui todas as migrações
+
+npx sequelize db:migrate:undo -> Desfaz a última migração (não recomendado)
+
+Métodos addColumn(tabela, coluna, {opções}) e removeColumn(tabela, coluna)
+
+npx sequelize seed:generate --name=users -> Criar seed
+npx sequelize db:seed:all -> Executa todos os seeds
+
+Criando um model no diretório models
+
+Criando controller no diretório controllers
+
