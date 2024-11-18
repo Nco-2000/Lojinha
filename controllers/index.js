@@ -1,4 +1,4 @@
-const 
+const signInController = require('./signInController');
 
 
 controllers = {
