@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -23,17 +25,23 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: {
+          isEmail: true     // Sequelize will validate if the value is a valid email
+        }
       },
       phone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+        type: Sequelize.STRING,  // Usando STRING para armazenar o número como texto
+      allowNull: true,         // Permitir valor NULL caso não seja obrigatório
+      validate: {
+        is: /^[0-9]{10,11}$/  // Validação para números de 10 ou 11 dígitos (como números de celular no Brasil)
+      }
       },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        
       },
       createdAt: {
         type: Sequelize.DATE,
