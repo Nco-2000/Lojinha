@@ -4,7 +4,7 @@ const {Router} = require('express');
 const router = Router();
 
 //Lista dos produtos.
-router.get('/categories', async(req, res) => {
+router.get('/products', async(req, res) => {
     
 })
 
