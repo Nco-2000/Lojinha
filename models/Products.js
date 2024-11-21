@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
         Stock: DataTypes.STRING,
         Price: DataTypes.STRING,
         Category_id: DataTypes.STRING,
-        ID_Product : DataTypes.STRING
+        ID_Product : DataTypes.STRING,
+        
 
     }, {});
     Product.associate = function(models) {
