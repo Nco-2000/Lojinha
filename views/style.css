@@ -1,6 +1,19 @@
 body{
-    background-color: black;
+    background-color: white;
 }
-a{
-    color: blue;
+
+.title{
+    color: #74612e;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    padding-right: 10px;
 }
+
+.title:hover{
+    color: #b38d27;
+}
+
+.bg-navbarCustom{
+    background-color: rgb(167, 167, 167);
+}
+
