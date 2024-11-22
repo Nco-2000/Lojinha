@@ -4,7 +4,7 @@ const addressit = require('addressit');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('Client', {
-    ID_Category: {
+    ID_Client: {
       type:DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
