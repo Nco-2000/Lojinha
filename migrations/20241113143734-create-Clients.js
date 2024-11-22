@@ -10,47 +10,46 @@ module.exports = {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
       },
-      name: {
+      Name: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: false
       },
-      passworld: {
+      Password: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: false
       },
-      email: {
+      Email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true     // Sequelize will validate if the value is a valid email
+          isEmail: true     
         }
       },
-      phone: {
-        type: Sequelize.STRING,  // Usando STRING para armazenar o número como texto
-      allowNull: true,         // Permitir valor NULL caso não seja obrigatório
+      Phone: {
+        type: Sequelize.STRING,  
+      allowNull: true,         
       validate: {
-        is: /^[0-9]{10,11}$/  // Validação para números de 10 ou 11 dígitos (como números de celular no Brasil)
+        is: /^[0-9]{10,11}$/  
       }
       },
-      address: {
+      Address: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true,
         
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull:false,
+        allowNull:true,
         defaultValue: Sequelize.fn('NOW')
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue:  Sequelize.fn('NOW')
       }
     });

@@ -1,14 +1,32 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override');
+
+const {Auth} = require('./controllers')
+
+
+
 
 const app = express();
 
 const port = 80;
 
+app.use(express.urlencoded({extended: true}));
+
+//Indica que o formato dos dados seja JSON
+app.use(express.json());
+
+//Chama a o method override a partir da query '_method'
+app.use(methodOverride('_method'));
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //Rotas...
+
+app.use('/Auth', Auth)
+
+
 
 app.listen(port, () => {
     console.log('Working on port: ' + port);

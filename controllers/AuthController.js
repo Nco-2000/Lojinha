@@ -1,7 +1,7 @@
-const {Clients} = require('../models')
+const {Client} = require('../models')
 const {Router} = require('express');
 
-const router = Router()
+const router = Router();
 
 //Errors 
 //1 - email ja existe
@@ -9,42 +9,33 @@ const router = Router()
 
 
 
-
-
-
+router.get('/cadastro', async(req,res)=>{
+    res.render('Auth/Signin');
+})
 
 router.post('/cadastro', async(req,res)=>{
-    const {name, email} = req.body;
+    const {Name, Email, Password, Comfirm_Password} = req.body;
 
-    const {id_email} = await Clients.findOne({
-        where: {email : email}
-    })
+    const email_found = await Client.findOne({where: {Email : Email}});
 
-    const {id_name} = await Clients.findOne({
-        where: {name : name}
-    })
 
-    let errors  = [];
 
-    if(id_email){
-        errors.push(1)
+
+    if(Comfirm_Password != Password){
         res.send('<h1>Email Already in use.</h1>')
+        res.send("<h1>As duas senhas são diferentes.</h1>")
     }
-    if(id_name){
-        errors.push(2)
+    else if(email_found){
         res.send('<h1>Email Already in use.</h1>')
-    }
-    
-    if(length(errors) > 0){
-        res.send('errors: ', {errors})
     }
     else{
-        req.send("<h1>Conta criada com sucesso</h1>")
+        res.send("<h1>Conta criada com sucesso</h1>")
+        await Client.create({Name, Email, Password});
     }
+})
 
-
-
-
+router.get('/login', async(req,res)=>{
+    const {Email, Password} = req.body
 })
 
 
@@ -53,6 +44,4 @@ router.post('/cadastro', async(req,res)=>{
 
 
 
-
-
-
+module.exports = router;

@@ -2,32 +2,32 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // Adding optional components for structured address
-    await queryInterface.addColumn('Clients', 'street', {
+    
+    await queryInterface.addColumn('Clients', 'Street', {
       type: Sequelize.STRING,
-      allowNull: true,  // Optional field for street
+      allowNull: true,  
     });
 
-    await queryInterface.addColumn('Clients', 'city', {
+    await queryInterface.addColumn('Clients', 'City', {
       type: Sequelize.STRING,
-      allowNull: true,  // Optional field for city
+      allowNull: true,  
     });
 
-    await queryInterface.addColumn('Clients', 'state', {
+    await queryInterface.addColumn('Clients', 'State', {
       type: Sequelize.STRING,
-      allowNull: true,  // Optional field for state
+      allowNull: true, 
     });
 
-    await queryInterface.addColumn('Clients', 'postal_code', {
+    await queryInterface.addColumn('Clients', 'Postal_code', {
       type: Sequelize.STRING,
-      allowNull: true,  // Optional field for postal code
+      allowNull: true, 
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn('Clients', 'street');
-    await queryInterface.removeColumn('Clients', 'city');
-    await queryInterface.removeColumn('Clients', 'state');
-    await queryInterface.removeColumn('Clients', 'postal_code');
+    await queryInterface.removeColumn('Clients', 'Street');
+    await queryInterface.removeColumn('Clients', 'City');
+    await queryInterface.removeColumn('Clients', 'State');
+    await queryInterface.removeColumn('Clients', 'Postal_code');
   }
 };

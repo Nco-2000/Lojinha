@@ -4,102 +4,51 @@ const addressit = require('addressit');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('Client', {
-    ID_Client: DataTypes.STRING,
-    name: DataTypes.STRING,
-    email: {
+    ID_Category: {
+      type:DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
+    Name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    Email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: {
-          msg: 'Email must be valid'
-        }
-      }
     },
-    password: {
+    Password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: false
     },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        is: {
-          args: /^[0-9]{10,11}$/,  // Regex for validating phone number
-          msg: 'Telefone must contain only digits and be 10 or 11 digits long'
-        }
-      }
+    Phone: {
+      type: DataTypes.STRING,  
+      allowNull: true,         
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true,  // Full address is optional
-      validate: {
-        notEmpty: {
-          msg: 'Address cannot be empty'
-        },
-        // Custom validation using addressit
-        isValidAddress(value) {
-          if (value) {
-            const parsed = addressit(value);
-
-            // Check if the parsed address contains at least the street and city
-            if (!parsed.street) {
-              throw new Error('Invalid address: street is required');
-            }
-            if (!parsed.city) {
-              throw new Error('Invalid address: city is required');
-            }
-            // if (!parsed.state) {
-            //   throw new Error('Invalid address: state is required');
-            // }
-            // if (!parsed.country) {
-            //   throw new Error('Invalid address: country is required');
-            // }
-          }
-        }
-      }
-    },
-    street: {
+    Address: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [3, 255],
-          msg: 'Street name must be between 3 and 255 characters'
-        }
-      }
+      unique: true,
+      
     },
-    city: {
+       
+    Street: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: {
-          args: [3, 255],
-          msg: 'City name must be between 3 and 255 characters'
-        }
-      }
-    },
-    state: {
+      allowNull: true},
+    City: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: {
-          args: [2, 255],
-          msg: 'State name must be between 2 and 255 characters'
-        }
-      }
-    },
-    postal_code: {
+      allowNull: true},
+    Street: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        is: {
-          args: /^[0-9]{5,10}$/,  // Basic postal code validation (can adjust for different countries)
-          msg: 'Postal code must contain only digits and be 5 to 10 digits long'
-        }
-      }
-    }
-  }, {});
+      allowNull: true},
+    Postal_code: {
+      type: DataTypes.STRING,
+      allowNull: true},    
+  });
 
   return User;
 };
