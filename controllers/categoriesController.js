@@ -28,3 +28,5 @@ router.patch('/categories/:id', async(req, res) => {
 router.delete('/categories/:id', async(req, res) => {
 
 })
+
+module.exports = router;

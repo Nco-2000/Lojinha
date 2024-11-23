@@ -27,3 +27,5 @@ router.patch('/products/:id', async(req, res) => {
 router.delete('/products/:id', async(req, res) => {
 
 })
+
+module.exports = router;
