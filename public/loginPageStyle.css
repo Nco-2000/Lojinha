@@ -1,0 +1,25 @@
+
+.background-container {
+    background-image: url("images/artesanatos.png");
+    background-size: cover; /* Makes the image cover the entire element */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    
+    width: 100%; /* Ensures the element takes up the full width */
+}
+
+.card.shadow-sm {
+    background-color: rgb(167, 167, 167);
+}
+
+.card-body {
+    background-color: rgb(167, 167, 167);
+}
+
+.btn.btn-primary.btn-block {
+    background-color: #74612e;
+}
+
+.btn.btn-primary.btn-block:hover {
+    background-color: #b38d27;
+}
