@@ -22,6 +22,9 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+//Define 'public', necessário para usar css com ejs.
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Rotas...
 
 app.use('/Auth', Auth)
