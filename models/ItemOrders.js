@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
-          },
+        },
         Product_id: DataTypes.STRING,
         Order_id: DataTypes.STRING,
         Quantity: DataTypes.STRING,
