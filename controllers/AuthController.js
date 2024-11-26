@@ -24,7 +24,7 @@ router.post('/cadastro', async(req,res)=>{
         res.send('<h1>Email Already in use.</h1>')
     }
     else{
-        res.redirect('Auth/Login')
+        res.redirect('Auth/NewLogin')
         await Client.create({Name, Email, Password});
     }
 })
