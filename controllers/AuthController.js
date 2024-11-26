@@ -8,7 +8,6 @@ const router = Router();
 //2 - name ja existe
 
 
-
 router.get('/cadastro', async(req,res)=>{
     res.render('Auth/Signin');
 })
@@ -32,7 +31,7 @@ router.post('/cadastro', async(req,res)=>{
 })
 
 router.get('/login', async(req,res)=>{
-    res.render('Auth/Login');
+    res.render('Auth/NewLogin');
 })
 
 
