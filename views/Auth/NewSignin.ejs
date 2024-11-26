@@ -16,23 +16,37 @@
     <%- include('../navbar.ejs') %>
     
     <div class="background-container">
-        <br/> <br/> 
+        <br/> <br/>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4">
                     <div class="card shadow-sm">
                         <div class="card-body">
                         <h1 class="text-center mb-4">Cadastro</h1>
-                        <form action="/Auth/login" method="POST">
+                        <form action="/Auth/cadastro" method="POST">
+
+                            <div class="form-group">
+                                <label for="Username">Username</label>
+                                <input type="email" class="form-control" id="Email" name="Email" placeholder="Digite o nome do usuário" required>
+                            </div>
+
                             <div class="form-group">
                                 <label for="Email">Email</label>
                                 <input type="email" class="form-control" id="Email" name="Email" placeholder="Digite o email" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="Password">Senha</label>
                                 <input type="password" class="form-control" id="Password" name="Password" placeholder="Digite sua senha" required>
                             </div>
+
+                            <div class="form-group">
+                                <label for="Comfirm_Password">Comfirmar Senha</label>
+                                <input type="Password" class="form-control" id="Comfirm_Password" name="Comfirm_Password" placeholder="Comfirme sua senha" required>
+                            </div>
+
                             <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+
                         </form>
                         </div>
                     </div>
