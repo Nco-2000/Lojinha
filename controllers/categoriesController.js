@@ -1,4 +1,3 @@
-
 const {Category} = require('../models');
 const {Router} = require('express');
 
@@ -14,8 +13,26 @@ router.get('/categories/:id', async(req, res) => {
 
 })
 
+
+
+
+router.get('/New', async(req, res) => {
+    res.render('Categories/AddCategory')
+})
+
 //Adicionar categoria.
-router.post('/categories/:id', async(req, res) => {
+router.post('/New', async(req, res) => {
+    const {Name} = req.body
+
+    const category_found = await Category.findOne({where: {Name : Name}});
+
+    if(category_found){
+        res.send("<h1>Category already exists.</h1>")
+    }
+    else{
+        await Category.create({Name});
+        res.send("<h1>Category created.</h1>")
+    }
 
 })
 

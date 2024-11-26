@@ -2,9 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 
-const {Auth} = require('./controllers')
-
-
+const {Auth, Category} = require('./controllers')
 
 
 const app = express();
@@ -28,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Rotas...
 
 app.use('/Auth', Auth)
-
+app.use('/Categories', Category)
 
 
 app.listen(port, () => {

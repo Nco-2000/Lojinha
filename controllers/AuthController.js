@@ -19,7 +19,6 @@ router.post('/cadastro', async(req,res)=>{
     const email_found = await Client.findOne({where: {Email : Email}});
 
     if(Comfirm_Password != Password){
-        res.send('<h1>Email Already in use.</h1>')
         res.send("<h1>As duas senhas são diferentes.</h1>")
     }
     else if(email_found){
@@ -32,7 +31,7 @@ router.post('/cadastro', async(req,res)=>{
 })
 
 router.get('/login', async(req,res)=>{
-    res.render('Auth/Login');
+    res.render('Auth/NewLogin');
 })
 
 
@@ -53,5 +52,4 @@ router.post('/login', async(req,res)=>{
         res.send("<h1>Não existe uma conta com este email.</h1>")
     }
 })
-
 module.exports = router;
