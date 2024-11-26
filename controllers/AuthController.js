@@ -8,7 +8,6 @@ const router = Router();
 //2 - name ja existe
 
 
-
 router.get('/cadastro', async(req,res)=>{
     res.render('Auth/Signin');
 })
