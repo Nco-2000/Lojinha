@@ -4,17 +4,23 @@ const {Router} = require('express');
 const router = Router();
 
 //Lista das categorias.
-router.get('/categories', async(req, res) => {
+router.get('/', async(req, res) => {
+    var success = false
+
+    try{
+        const categories = await Category.findAll()
+        res.render('Categories/ViewCategories', {categories, success})
     
+    }catch{
+        success = false;
+        res.render('Categories/ViewCategories', {success})
+    }
 })
 
 //Ver categoria individual.
 router.get('/categories/:id', async(req, res) => {
 
 })
-
-
-
 
 router.get('/New', async(req, res) => {
     res.render('Categories/AddCategory')

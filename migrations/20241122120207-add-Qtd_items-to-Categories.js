@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('Categories', 'Qtd_items',{ 
       type: Sequelize.INTEGER,
-      allowNull: true, 
+      defaultValue: 0
     });
     
   },

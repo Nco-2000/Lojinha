@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success == false) { %>
+        <h1>No categories exist</h1>
+    <% } else{ %>
+        <% categories.forEach(cat => { %>
+            <%= cat.Name %>
+            <br>
+            <%= cat.Qtd_items %>
+            <br>
+            <%= cat.image_id %>
+            <br>
+        <% }) %> 
+    <% } %>    
+</body>
+</html>
