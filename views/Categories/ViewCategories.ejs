@@ -11,10 +11,10 @@
     <% } else{ %>
         <% categories.forEach(cat => { %>
             <%= cat.Name %>
-            <br>
             <%= cat.Qtd_items %>
-            <br>
             <%= cat.image_id %>
+            <%= cat.ID_Category %>
+            <a href="/Categories/<%= cat.ID_Category %>">Edit</a>
             <br>
         <% }) %> 
     <% } %>    
