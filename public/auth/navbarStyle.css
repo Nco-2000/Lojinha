@@ -18,3 +18,7 @@ body{
     background-color: rgb(167, 167, 167);
 }
 
+.navbar {
+    min-height: 10vh;
+}
+

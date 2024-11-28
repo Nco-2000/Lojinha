@@ -4,7 +4,7 @@
     background-size: cover; /* Makes the image cover the entire element */
     background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
-    
+    height: 80vh;
     width: 100%; /* Ensures the element takes up the full width */
 }
 
