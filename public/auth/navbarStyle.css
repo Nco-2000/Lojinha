@@ -19,9 +19,6 @@ body{
 }
 
 .navbar {
-    height: 10vh;
+    min-height: 10vh;
 }
 
-.navbar navbar-expanded {
-    height: 200vh; /* Adjust this value based on your design */
-  }
