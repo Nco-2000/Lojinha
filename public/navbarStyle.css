@@ -16,5 +16,9 @@ body{
 
 .bg-navbarCustom{
     background-color: rgb(167, 167, 167);
+    
 }
 
+.navbar {
+    height: 10vh;
+}

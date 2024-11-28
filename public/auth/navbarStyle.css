@@ -18,3 +18,10 @@ body{
     background-color: rgb(167, 167, 167);
 }
 
+.navbar {
+    height: 10vh;
+}
+
+.navbar navbar-expanded {
+    height: 200vh; /* Adjust this value based on your design */
+  }
