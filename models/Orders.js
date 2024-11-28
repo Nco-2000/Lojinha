@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         Client_id: DataTypes.STRING,
         Date: DataTypes.STRING,
         Status: DataTypes.STRING,
-        Total_price: DataTypes.STRING
+        Total_price: DataTypes.STRING,
     }, {})
     Order.associate = function(models) {
         Order.belongsTo(models.Client, {foreingKey: 'Client_id'})

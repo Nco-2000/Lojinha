@@ -9,11 +9,10 @@
     <% if (success == false) { %>
         <h1>No categories exist</h1>
     <% } else{ %>
-        <% categories.forEach(cat => { %>
+        <% Category.forEach(cat => { %>
             <%= cat.Name %>
             <%= cat.Qtd_items %>
             <%= cat.image_id %>
-            <%= cat.ID_Category %>
             <a href="/Categories/<%= cat.ID_Category %>">Edit</a>
             <br>
         <% }) %> 

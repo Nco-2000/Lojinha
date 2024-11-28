@@ -9,6 +9,7 @@ const Category = (sequelize, DataTypes) => {
         Name: DataTypes.STRING,
         Qtd_items : DataTypes.STRING,
         image_id : DataTypes.STRING,
+        //Description : DataTypes.STRING,
     });
   };
 module.exports = Category

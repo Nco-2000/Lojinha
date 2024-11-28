@@ -9,7 +9,7 @@ const router = Router();
 
 
 router.get('/cadastro', async(req,res)=>{
-    res.render('Auth/Signin');
+    res.render('Auth/NewSignin');
 })
 
 router.post('/cadastro', async(req,res)=>{

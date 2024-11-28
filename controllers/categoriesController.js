@@ -8,18 +8,15 @@ router.get('/', async(req, res) => {
     var success = true
 
     try{
-        const categories = await Category.findAll()
-        res.render('Categories/ViewCategories', {categories, success})
-    
+        Category.findAll().then(categories =>{
+            res.render('Categories/ViewCategories', {Category : categories, success})
+        })
+        //console.log(categories);
+        //res.render('Categories/ViewCategories', {categories, success})
     }catch{
         success = false;
         res.render('Categories/ViewCategories', {success})
     }
-})
-
-//Ver categoria individual.
-router.get('/categories/:id', async(req, res) => {
-
 })
 
 router.get('/New', async(req, res) => {
@@ -39,32 +36,28 @@ router.post('/New', async(req, res) => {
         await Category.create({Name});
         res.send("<h1>Category created.</h1>")
     }
-
 })
-
-
-
 
 //Editar categoria.
 router.get('/:ID_Category', async(req, res) => {
     const {ID_Category} = req.params;
 
     try{
-        const category = Category.findByPk(ID_Category)
-        res.render('Categories/EditCategory', category);
+        const category = await Category.findByPk(ID_Category)
+        res.render('Categories/EditCategory', {category});
     }catch{
         res.send("<h1>Could not get the category.</h1>")
     }
-    
+
 })
 
-router.patch('/categories/:id', async(req, res) => {
-
+router.patch('/:ID_Category', async(req, res) => {
+    const category = req.body
+    res.redirect('/categories')
 })
 
 //Deletar categoria.
-router.delete('/categories/:id', async(req, res) => {
+router.delete('/:ID_Category', async(req, res) => {
 
 })
-
 module.exports = router;
