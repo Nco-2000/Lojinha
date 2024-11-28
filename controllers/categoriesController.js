@@ -52,8 +52,23 @@ router.get('/:ID_Category', async(req, res) => {
 })
 
 router.patch('/:ID_Category', async(req, res) => {
-    const category = req.body
-    res.redirect('/categories')
+    const {Name} = req.body
+    const {ID_Category} = req.params
+
+
+    const category_found = await Category.findOne({where: {Name : Name}});
+    if(category_found){
+        res.send("<h1>A category with this name already exists</h1>")
+    }
+
+    else{
+        try{
+            const updated_category = await Category.update({Name : Name}, {where: {ID_Category : ID_Category}} )
+            res.redirect('/categories')
+        }catch{
+            res.send("<h1>Error updating the category</h1>")
+        }
+    }
 })
 
 //Deletar categoria.
