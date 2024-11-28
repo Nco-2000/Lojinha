@@ -9,7 +9,12 @@ router.get('/', async(req, res) => {
 
     try{
         Category.findAll().then(categories =>{
-            res.render('Categories/ViewCategories', {Category : categories, success})
+            if(categories.lenght > 0){
+                res.render('Categories/ViewCategories', {Category : categories, success})
+            }else{
+                success = false;
+                res.render('Categories/ViewCategories', {success})
+            }
         })
         //console.log(categories);
         //res.render('Categories/ViewCategories', {categories, success})
@@ -39,7 +44,7 @@ router.post('/New', async(req, res) => {
 })
 
 //Editar categoria.
-router.get('/:ID_Category', async(req, res) => {
+router.post('/Edit/:ID_Category', async(req, res) => {
     const {ID_Category} = req.params;
 
     try{
@@ -51,7 +56,7 @@ router.get('/:ID_Category', async(req, res) => {
 
 })
 
-router.patch('/:ID_Category', async(req, res) => {
+router.patch('/Edit/:ID_Category', async(req, res) => {
     const {Name} = req.body
     const {ID_Category} = req.params
 
@@ -71,8 +76,30 @@ router.patch('/:ID_Category', async(req, res) => {
     }
 })
 
-//Deletar categoria.
-router.delete('/:ID_Category', async(req, res) => {
 
+router.post('/submit', (req, res) => {
+    const name = req.body.name;  // Extract data from the request body
+    const message = `Are you sure you want to submit the form, ${name}?`;  // Confirmation message
+    
+    // Send the confirmation message back to the client
+    res.json({ message: message });
+  });
+
+
+//Deletar categoria.
+router.delete('/Delete/:ID_Category', async(req, res) => {
+    const {ID_Category} = req.params
+
+    Category.destroy({where: {ID_Category : ID_Category}}).then(deleted => {
+        if (deleted) {
+            res.redirect('/categories')
+        } else {
+            res.send('<h1>No user found with the given ID</h1>');
+        }
+      }).catch(error => {
+        res.send('<h1>Error deleting user</h1>');
+      });
+    
 })
+
 module.exports = router;

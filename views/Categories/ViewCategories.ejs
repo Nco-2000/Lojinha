@@ -13,9 +13,48 @@
             <%= cat.Name %>
             <%= cat.Qtd_items %>
             <%= cat.image_id %>
-            <a href="/Categories/<%= cat.ID_Category %>">Edit</a>
+            <form action="/Categories/Edit/<%= cat.ID_Category%>" method="post">
+                <input type="submit" value="Edit">
+            </form>
+            <form id="submit"  class="submit-form" action="/Categories/Delete/<%= cat.ID_Category %>?_method=DELETE" method="post">
+                <input type="submit" value="Remove Category">
+            </form>
             <br>
         <% }) %> 
     <% } %>    
 </body>
+<script>
+    // Get form element
+    const forms  = document.querySelectorAll('.submit-form');
+    
+    // Handle form submission
+    forms.forEach(form => {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();  // Prevent default form submission
+
+        // Create a FormData object from the form
+        const formData = new FormData(form);
+
+        // Send AJAX request to the server
+        fetch('categories/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Show confirmation dialog
+          const userConfirmed = window.confirm(data.message);
+
+          if (userConfirmed) {
+            form.submit()
+          } else {
+            
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    });
+  </script>
 </html>
