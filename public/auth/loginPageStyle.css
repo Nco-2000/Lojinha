@@ -6,6 +6,7 @@
     background-repeat: no-repeat; /* Prevents the image from repeating */
     height: 80vh;
     width: 100%; /* Ensures the element takes up the full width */
+    overflow-y: auto;
 }
 
 .card.shadow-sm {
@@ -23,3 +24,4 @@
 .btn.btn-primary.btn-block:hover {
     background-color: #b38d27;
 }
+
