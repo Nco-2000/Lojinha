@@ -7,8 +7,8 @@ const Category = (sequelize, DataTypes) => {
         allowNull: false
       },
         Name: DataTypes.STRING,
-        Qtd_items : DataTypes.STRING,
-        image_id : DataTypes.STRING,
+        Qtd_items : DataTypes.INTEGER,
+        image_id : DataTypes.INTEGER,
         //Description : DataTypes.STRING,
     });
   };

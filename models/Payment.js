@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {//dont forget to make  amigration of this one
+module.exports = (sequelize, DataTypes) => {//dont forget to make a migration of this one
     const Payment = sequelize.define('Payment', {
         ID_Payment: {
           type:DataTypes.INTEGER,

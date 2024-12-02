@@ -7,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false
         },
         Name: DataTypes.STRING,
-        Stock: DataTypes.STRING,
-        Price: DataTypes.STRING,
-        Category_id: DataTypes.STRING,
-        Weight : DataTypes.STRING,
+        Stock: DataTypes.INTEGER,
+        Price: DataTypes.FLOAT,
+        Category_id: DataTypes.INTEGER,
+        Weight : DataTypes.FLOAT,
         Color : DataTypes.STRING,
-        Size : DataTypes.STRING,
+        Size : DataTypes.FLOAT,
         
     }, {});
     Product.associate = function(models) {
