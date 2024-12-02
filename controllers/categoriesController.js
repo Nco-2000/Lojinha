@@ -9,7 +9,7 @@ router.get('/', async(req, res) => {
 
     try{
         Category.findAll().then(categories =>{
-            if(categories.lenght > 0){
+            if(categories.length > 0){
                 res.render('Categories/ViewCategories', {Category : categories, success})
             }else{
                 success = false;

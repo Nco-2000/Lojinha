@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         Weight : DataTypes.FLOAT,
         Color : DataTypes.STRING,
         Size : DataTypes.FLOAT,
+        Description : DataTypes.STRING,
         
     }, {});
     Product.associate = function(models) {

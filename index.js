@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 
-const {Auth, Category} = require('./controllers')
+const {Auth, Category, Product} = require('./controllers')
 
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/Auth', Auth)
 app.use('/Categories', Category)
-
+app.use('/Products', Product)
 
 app.listen(port, () => {
     console.log('Working on port: ' + port);

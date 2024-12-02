@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success == false) { %>
+        <h1>No Products exist</h1>
+    <% } else{ %>
+        <% products.forEach(product => { %>
+            <%= product.Name %>
+            <%= product.Stock %>
+            <%= product.Price %>
+            <%= product.Category_id %>
+            <%= product.Weight %>
+            <%= product.Color %>
+            <%= product.Size %>
+            <%= product.Description %>
+            <form action="/Products/Edit/<%= product.ID_Product%>" method="post">
+                <input type="submit" value="Edit">
+            </form>
+            <form id="submit"  class="submit-form" action="/Products/Delete/<%= product.ID_Category %>?_method=DELETE" method="post">
+                <input type="submit" value="Remove Category">
+            </form>
+            <br>
+        <% }) %> 
+    <% } %>    
+</body>
