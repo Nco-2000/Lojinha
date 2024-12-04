@@ -90,9 +90,6 @@ router.post('/submit', (req, res) => {
 router.delete('/Delete/:ID_Category', async(req, res) => {
     const {ID_Category} = req.params
 
-
-    
-
     Category.destroy({where: {ID_Category : ID_Category}}).then(deleted => {
         if (deleted) {
             res.redirect('/categories')
@@ -102,7 +99,6 @@ router.delete('/Delete/:ID_Category', async(req, res) => {
       }).catch(error => {
         res.send('<h1>Error deleting user</h1>');
       });
-    
 })
 
 module.exports = router;

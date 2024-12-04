@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
+const {sequelize} = require('./models')
 
 const {Auth, Category, Product} = require('./controllers')
 
@@ -8,6 +9,7 @@ const {Auth, Category, Product} = require('./controllers')
 const app = express();
 
 const port = 80;
+
 
 app.use(express.urlencoded({extended: true}));
 
