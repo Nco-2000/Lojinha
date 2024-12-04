@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>Cadastro</h1>
-    <% if (success == false) { %>
+    <% if (Success == false) { %>
         <h1>O produto nao existe</h1>
     <% } else{ %>
-        <form action="/Product/Edit/<%= Product.ID_Category %>?_method=PATCH" method="POST">
+        <form action="/products/Edit/<%= product.ID_Product %>?_method=PATCH" method="POST">
             <section>
                 <label>Nome do Produto</label>
                 <br/>

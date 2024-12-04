@@ -6,7 +6,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Clients', { 
-      ID_Category: {
+      ID_Client: {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,

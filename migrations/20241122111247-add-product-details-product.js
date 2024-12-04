@@ -26,7 +26,7 @@ module.exports = {
       },
       Category_id: {
         type: Sequelize.INTEGER,
-        allowNull: false, 
+        allowNull: true, 
       },
       Weight: {
         type: Sequelize.FLOAT,

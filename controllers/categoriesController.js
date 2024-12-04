@@ -1,4 +1,4 @@
-const {Category} = require('../models');
+const {Category, Product} = require('../models');
 const {Router} = require('express');
 
 const router = Router();
@@ -89,6 +89,9 @@ router.post('/submit', (req, res) => {
 //Deletar categoria.
 router.delete('/Delete/:ID_Category', async(req, res) => {
     const {ID_Category} = req.params
+
+
+    
 
     Category.destroy({where: {ID_Category : ID_Category}}).then(deleted => {
         if (deleted) {

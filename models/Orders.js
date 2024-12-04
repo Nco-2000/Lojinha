@@ -16,3 +16,18 @@ module.exports = (sequelize, DataTypes) => {
     };
     return Order
 }
+
+
+
+
+
+// const isAdmin = (req, res, next) => {
+//     if (req.user && req.user.role === 'admin') { 
+//       return next(); 
+//     }
+//     return res.status(403).json({ message: 'Acesso negado' });
+//   };
+
+//   router.get('/admin/edit-product/:id', isAdmin, (req, res) => {
+//     res.send(`Página de edição do produto ID: ${req.params.id}`);
+//   });
