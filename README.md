@@ -44,7 +44,8 @@ Pedidos possuem pagamentos associados.
 
 
 4. TESTE
-4.1 Arquivo de adição de usuarios pelo sequelize: 
+4.1 Arquivo de adição de usuarios pelo sequelize:
+````
 'use strict';
 
 module.exports = {
@@ -58,14 +59,13 @@ module.exports = {
       {"ID_Client":6,"Name":"Sophia Martinez","Email":"sophia.martinez@example.com","Password":"123","Phone":"123987654","Address":"789 Cedar St","Street":"Cedar St","City":"Houston","Postal_Code":"77002"},
       {"ID_Client":7,"Name":"James Brown","Email":"james.brown@example.com","Password":"123","Phone":"654321987","Address":"123 Birch St","Street":"Birch St","City":"Phoenix","Postal_Code":"85001"},
       {"ID_Client":8,"Name":"Olivia Garcia","Email":"olivia.garcia@example.com","Password":"123","Phone":"789654123","Address":"456 Willow St","Street":"Willow St","City":"Dallas","Postal_Code":"75201"},
-
-    ], {});
+      ], {});
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Clients', null, {});
   }
 };
-
+````
 
 4.2. Adição de dados direto no workbench
 
