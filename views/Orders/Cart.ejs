@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success == false) { %>
+        <h1>O carrinho esta vazio</h1>
+    <% } else{ %>
+        <h2>Seu Carrinho:</h2><br>
+        <% listaDados.forEach(Dado => { %>
+            Name: <%= Dado.Name %><br>
+            Quantidade: <%= Dado.qtd %><br>
+            Preço Unidade: R$<%= Dado.Price_prod %><br>
+            PReço total: R$<%= Dado.Price_total %><br>
+            <br>
+            <br>
+        <% }) %> 
+        <form action="/products" method="get">
+            <input type="submit" value="Finalizar compra">
+        </form>
+    <% } %>    
+</body>

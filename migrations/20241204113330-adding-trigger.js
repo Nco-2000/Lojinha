@@ -11,7 +11,7 @@ module.exports = {
       BEGIN
           UPDATE categories
           SET qtd_items = qtd_items + 1
-          WHERE id = NEW.category_id;
+          WHERE  ID_Category = NEW.category_id;
       END;
     `;
     await queryInterface.sequelize.query(createTriggerSQL);

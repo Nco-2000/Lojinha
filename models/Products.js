@@ -12,8 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         Category_id: DataTypes.INTEGER,
         Weight : DataTypes.FLOAT,
         Color : DataTypes.STRING,
-        Size : DataTypes.FLOAT,
+        Size : DataTypes.STRING,
         Description : DataTypes.STRING,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
         
     }, {});
     Product.associate = function(models) {

@@ -6,28 +6,17 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
-        Client_id: DataTypes.STRING,
-        Date: DataTypes.STRING,
+        Client_id: DataTypes.INTEGER,
         Status: DataTypes.STRING,
-        Total_price: DataTypes.STRING,
+        Total_price: DataTypes.FLOAT,
+        Payment_id: DataTypes.INTEGER,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     }, {})
     Order.associate = function(models) {
-        Order.belongsTo(models.Client, {foreingKey: 'Client_id'})
+        Order.belongsTo(models.Client, {foreignKey: 'Client_id' })
+        Order.belongsTo(models.Payment, {foreignKey: 'Payment_id'})
+        Order.hasMany(models.ItemOrder, { foreignKey: 'Order_id' });
     };
     return Order
 }
-
-
-
-
-
-// const isAdmin = (req, res, next) => {
-//     if (req.user && req.user.role === 'admin') { 
-//       return next(); 
-//     }
-//     return res.status(403).json({ message: 'Acesso negado' });
-//   };
-
-//   router.get('/admin/edit-product/:id', isAdmin, (req, res) => {
-//     res.send(`Página de edição do produto ID: ${req.params.id}`);
-//   });

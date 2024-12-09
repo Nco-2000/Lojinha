@@ -9,6 +9,8 @@ const Category = (sequelize, DataTypes) => {
         Name: DataTypes.STRING,
         Qtd_items : DataTypes.INTEGER,
         image_id : DataTypes.INTEGER,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
         //Description : DataTypes.STRING,
     });
   };

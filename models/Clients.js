@@ -35,7 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       
     },
-       
+    Current_Cart_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     Street: {
       type: DataTypes.STRING,
       allowNull: true},
@@ -48,7 +51,13 @@ module.exports = (sequelize, DataTypes) => {
     Postal_code: {
       type: DataTypes.STRING,
       allowNull: true},    
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   });
+
+  User.associate = function(models) {
+    User.belongsTo(models.Order, {foreignKey: 'Current_Cart_id'})
+  }
 
   return User;
 };

@@ -19,10 +19,10 @@
             <%= product.Size %>
             <%= product.Description %>
             <form action="/Products/Edit/<%= product.ID_Product%>" method="post">
-                <input type="submit" value="Edit">
+                <input type="submit" value="Edit Product">
             </form>
             <form id="submit"  class="submit-form" action="/Products/Delete/<%= product.ID_Product %>?_method=DELETE" method="post">
-                <input type="submit" value="Remove Category">
+                <input type="submit" value="Remove Product">
             </form>
             <br>
         <% }) %> 

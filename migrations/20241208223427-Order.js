@@ -1,50 +1,35 @@
 'use strict';
 
-
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('Clients', { 
-      ID_Client: {
+    await queryInterface.createTable('Orders', { 
+    ID_ORDER: {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
       },
-      Name: {
-        type: Sequelize.STRING,
+      Client_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         unique: false
       },
-      Password: {
-        type: Sequelize.STRING,
+      Status: {
+        type: Sequelize.ENUM("Awaiting Confirmation", "Awaiting Payment", "Processing Payment", "Sent", "Received", "Canceled", "Finished", "In transit"),
+        defaultValue: "Awaiting Confirmation",
         allowNull: false,
         unique: false
       },
-      Email: {
-        type: Sequelize.STRING,
+      Total_price: {
+        type: Sequelize.FLOAT,
         allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true     
-        }
+        unique: false
       },
-      Current_Cart_id: {
+      Payment_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
-      },
-      Phone: {
-        type: Sequelize.STRING,  
-      allowNull: true,         
-      validate: {
-        is: /^[0-9]{10,11}$/  
-      }
-      },
-      Address: {
-        type: Sequelize.STRING,
-        allowNull: true,
-        unique: true,
-        
+        unique: true
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -55,14 +40,13 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
         defaultValue:  Sequelize.fn('NOW')
-      }
+      },
     });
   },
 
   async down (queryInterface, Sequelize) {
 
-    await queryInterface.dropTable('Clients');
+    await queryInterface.dropTable('Orders');
   }
 };
-
 

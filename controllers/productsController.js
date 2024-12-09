@@ -1,25 +1,72 @@
 const {Product, Category} = require('../models')
 const {Router} = require('express');
+const jwt = require('jsonwebtoken');
 
+const verifyToken = require('../middleware/verifyToken');
 
 
 const router = Router();
 
 //Lista dos produtos.
-router.get('/', async(req, res) => {
+router.get('/', verifyToken, async(req, res) => {
     var success = true;
-    try{
-        Product.findAll().then(products =>{
-            if(products.length > 0){
-                res.render('Products/ViewProducts', {products, success : true});
-            }else{
-                res.render('Products/ViewProducts', {success : false});
-            }
-        })
-    }catch{
-        res.render('Products/ViewProducts', {success : false});
+    const token = req.cookies.token;
+
+    if (!token) {
+        res.redirect('/Auth/Login');
+    }
+
+    if(req.user.role == "Admin"){
+        try{
+            Product.findAll().then(products =>{
+                if(products.length > 0){
+                    res.render('Products/ViewProductsAdmin', {products, success : true});
+                }else{
+                    res.render('Products/ViewProductsAdmin', {success : false});
+                }
+            })
+        }catch{
+            res.render('Products/ViewProductsAdmin', {success : false});
+        }
+    }
+    else if(req.user.role == "Client"){
+        try{
+            Product.findAll().then(products =>{
+                if(products.length > 0){
+                    res.render('Products/ViewProductsClient', {products, success : true});
+                }else{
+                    res.render('Products/ViewProductsClient', {success : false});
+                }
+            })
+        }catch{
+            res.render('Products/ViewProductsClient', {success : false});
+        }
     }
 })
+
+//ver mais informaçoes de um produto
+router.get('/:ID_Product', async (req, res)=>{
+    const {ID_Product} = req.params
+
+    const product = await Product.findByPk(ID_Product);
+    if(product){
+        res.render('Products/ViewProduct', {product, success : true})
+    }else{
+        res.redirect('/');
+    }
+
+
+
+})
+
+
+
+
+
+
+
+
+
 
 
 //Adicionar Produto.
