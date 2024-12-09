@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <% if (success == false) { %>
+        <h1>A categoria nao existe</h1>
+    <% } else{ %>
+        <form action="/Categories/Edit/<%= category.ID_Category %>?_method=PATCH" method="POST">
+            <section>
+                <label>Name of category</label>
+                <br/>
+                <textarea name="Name" id="Name" placeholder=<%=category.Name%>></textarea>
+            </section>
+            <section>
+                <label>image</label>
+                <br/>
+                <textarea name="Image" id="Image" placeholder="Selecione a imagem da categoria"></textarea>
+            </section>
+            <button>Enviar</button>
+        </form>
+    <% } %>
+</body>
+</html>

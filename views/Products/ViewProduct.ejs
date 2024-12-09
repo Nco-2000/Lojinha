@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success == false) { %>
+        <h1>This product no longer exists</h1>
+    <% } else{ %>
+            <%= product.Name %><br>
+            Stock: <%= product.Stock %><br>
+            Price: <%= product.Price %><br>
+            Category_id: <%= product.Category_id %><br>
+            Weight: <%= product.Weight %><br>
+            Color: <%= product.Color %><br>
+            Size: <%= product.Size %><br>
+            Description: <%= product.Description %><br>
+            <form action="/Order/Add/<%= product.ID_Product%>" method="post">
+                <section>
+                    <label>Quantidade</label>
+                    <br/>
+                    <textarea name="qtd" id="qtd" placeholder="Digite quantas unidades"></textarea>
+                </section>
+                <input type="submit" value="ADICIONAR AO CARRINHO">
+            </form>
+            <br>
+    <% } %>    
+</body>
