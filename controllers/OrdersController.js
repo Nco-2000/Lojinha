@@ -84,13 +84,27 @@ router.get('/Cart', verifyToken, async (req, res) => {
             // Use Promise.all to wait for all product fetches
             const listaDados = await Promise.all(itemOrders.map(async (itemOrder) => {
                 const currentProduct = await Product.findByPk(itemOrder.Product_id);
-                return {
-                    Price_prod: currentProduct.Price,
-                    Price_total: itemOrder.Price_total,
-                    qtd: itemOrder.Quantity,
-                    Name: currentProduct.Name,
-                };
+               
+                if(currentProduct !== null && currentProduct !== undefined && currentProduct !== NaN){
+                    return {
+                        Price_prod: currentProduct.Price,
+                        Price_total: itemOrder.Price_total,
+                        qtd: itemOrder.Quantity,
+                        Name: currentProduct.Name,
+                    };
+                }
+                else{
+                    return {
+                        Price_prod: null,
+                        Price_total: null,
+                        qtd: null,
+                        Name: null,
+                    }
+                }
             }));
+            console.log(listaDados)
+            const filteredListaDados = listaDados.filter((item) => item.Price_prod !== null);
+            console.log(listaDados)
             return res.render('Orders/Cart', {listaDados, success : true});
         }
     }

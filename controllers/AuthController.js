@@ -1,4 +1,4 @@
-const {Client} = require('../models')
+const {Client, Admin} = require('../models')
 const {Router} = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
     const { Email, Password } = req.body;
 
     const email_found = await Client.findOne({ where: { Email: Email } });
-
+    const email_found_admin = await Admin.findOne({where: {Email : Email}});
     if (email_found) {
         if (email_found.Password === Password) {
             // Create a JWT token
@@ -53,7 +53,18 @@ router.post('/login', async (req, res) => {
         } else {
             res.send("<h1>Incorrect password</h1>");
         }
-    } else {
+    } else if(email_found_admin){
+        if(email_found_admin.Password === Password){
+            const payload = { id: email_found_admin.ID_Admin, name: email_found_admin.Name, role: "Admin"};  // JWT payload (we store the client ID)
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+            // Send the token to the client (in the response body)
+            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
+            res.redirect('/products');
+        }
+        else{
+            res.send("<h1>Incorrect password</h1>");
+        }
+    }else{
         res.send("<h1>No account found with this email.</h1>");
     }
 });
