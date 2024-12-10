@@ -1,59 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <% if (Success == false) { %>
-        <h1>O produto nao existe</h1>
-    <% } else{ %>
-        <form action="/products/Edit/<%= product.ID_Product %>?_method=PATCH" method="POST">
-            <section>
-                <label>Nome do Produto</label>
-                <br/>
-                <textarea name="Name" id="Name" placeholder="Digite o nome do produto"></textarea>
-            </section>
-            <section>
-                <label>Estoque</label>
-                <br/>
-                <textarea name="Stock" id="Stock" placeholder="Digite o valor inicial de estoque"></textarea>
-            </section>
-            <section>
-                <label>Preço</label>
-                <br/>
-                <textarea name="Price" id="Price" placeholder="Digite o Preço base do produto"></textarea>
-            </section>
-            <section>
-                <label>Peso</label>
-                <br/>
-                <textarea name="Weight" id="Weight" placeholder="Digite o peso do produto"></textarea>
-            </section>
-            <section>
-                <label>Dimensões</label>
-                <br/>
-                <textarea name="Size" id="Size" placeholder="Digite as dimensões do produto"></textarea>
-            </section>
-            <section>
-                <label>Cor</label>
-                <br/>
-                <textarea name="Color" id="Color" placeholder="Digite a cor/cores do produto"></textarea>
-            </section>
-            <section>
-                <label>Descrição</label>
-                <br/>
-                <textarea name="Description" id="Description" placeholder="Digite a descrição do produto"></textarea>
-            </section>
-            <section>
-                <label>Categoria</label>
-                <br/>
-                <textarea name="Category_name" id="Category_name" placeholder="Digite a categoria do produto"></textarea>
-            </section>
-
-            <button>Enviar</button>
-        </form>
-    <% } %>
+    <%- include('../navbar.ejs') %>
+            <% if (Success == false) { %>
+                <h1>O produto nao existe</h1>
+            <% } else{ %>
+                    <form class="product" action="/products/Edit/<%= product.ID_Product %>?_method=PATCH" method="POST">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Estoque</th>
+                                    <th>Preço</th>
+                                    <th>Categoria</th>  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><textarea name="Name" id="Name" placeholder="Digite o nome do produto"></textarea></td>
+                                    <td><textarea name="Stock" id="Stock" placeholder="Digite o valor inicial de estoque"></textarea></td>
+                                    <td><textarea name="Price" id="Price" placeholder="Digite o Preço base do produto"></textarea></td>
+                                    <td><textarea name="Weight" id="Weight" placeholder="Digite o peso do produto"></textarea></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Peso</th>
+                                    <th>Cor</th>
+                                    <th>Tamanho</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><textarea name="Size" id="Size" placeholder="Digite as dimensões do produto"></textarea></td>
+                                    <td><textarea name="Color" id="Color" placeholder="Digite a cor/cores do produto"></textarea></td>
+                                    <td><textarea name="Description" id="Description" placeholder="Digite a descrição do produto"></textarea></td>
+                                    <td><textarea name="Category_name" id="Category_name" placeholder="Digite a categoria do produto"></textarea></td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                        
+                        <% } %>
+                    </tbody>
+                </table>
+                <div class="row justify-content-center">
+                    <button class="col-lg-3">ENVIAR</button>
+                </div>
+            </form>
+    
 </body>
 </html>

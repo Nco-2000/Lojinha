@@ -3,28 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
 </head>
 <body>
-    <% if (success == false) { %>
-        <h1>No Products exist</h1>
-    <% } else{ %>
-        <% products.forEach(product => { %>
-            <%= product.Name %>
-            <%= product.Stock %>
-            <%= product.Price %>
-            <%= product.Category_id %>
-            <%= product.Weight %>
-            <%= product.Color %>
-            <%= product.Size %>
-            <%= product.Description %>
-            <form action="/Products/Edit/<%= product.ID_Product%>" method="post">
-                <input type="submit" value="Edit Product">
-            </form>
-            <form id="submit"  class="submit-form" action="/Products/Delete/<%= product.ID_Product %>?_method=DELETE" method="post">
-                <input type="submit" value="Remove Product">
-            </form>
-            <br>
-        <% }) %> 
-    <% } %>    
+    <%- include('../navbar.ejs') %>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Peso</th>
+                <th>Cor</th>
+                <th>Tamanho</th>
+                <th>Descrição</th>
+                <th>EDIT</th>
+                <th>REMOVE</th>
+            </tr>
+        </thead>
+          <tbody>
+            <% if (success == false) { %>
+              <tr>
+                <h1>No Products exist</h1>
+              </tr>
+            <% } else{ %>
+                <% products.forEach(product => { %>
+                  <tr>
+                    <td><%= product.Name %></td>
+                    <td><%= product.Stock %></td>
+                    <td>R$<%= product.Price %></td>
+                    <td><%= product.Category_id %></td>
+                    <td><%= product.Weight %></td>
+                    <td><%= product.Color %></td>
+                    <td><%= product.Size %></td>
+                    <td><%= product.Description %></td>
+                    <td><form action="/Products/Edit/<%= product.ID_Product%>" method="post">
+                        <input type="submit" value="Edit Product">
+                    </form></td>
+                    <td><form id="submit"  class="submit-form" action="/Products/Delete/<%= product.ID_Product %>?_method=DELETE" method="post">
+                        <input class="btn btn-danger"type="submit" value="Remove Product">
+                    </form></td>
+                    <br>
+                  </tr>
+                <% }) %> 
+            <% } %> 
+          </tbody> 
+        </table>
 </body>
