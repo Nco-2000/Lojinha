@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <% if (success == false) { %>
-        <h1>A categoria nao existe</h1>
-    <% } else{ %>
-        <form action="/Categories/Edit/<%= category.ID_Category %>?_method=PATCH" method="POST">
-            <section>
-                <label>Name of category</label>
-                <br/>
-                <textarea name="Name" id="Name" placeholder=<%=category.Name%>></textarea>
-            </section>
-            <section>
-                <label>image</label>
-                <br/>
-                <textarea name="Image" id="Image" placeholder="Selecione a imagem da categoria"></textarea>
-            </section>
-            <button>Enviar</button>
-        </form>
-    <% } %>
+    <%- include('../navbar.ejs') %>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>ID Imagems</th>
+                <th>Comfirmar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (success == false) { %>
+                <tr><h1>A categoria nao existe</h1></tr>
+            <% } else{ %>
+                <tr>
+                <form action="/Categories/Edit/<%= category.ID_Category %>?_method=PATCH" method="POST">
+                        <td>
+                            <textarea name="Name" id="Name" placeholder=<%=category.Name%>></textarea>
+                        </td>
+                        <td>
+                            <textarea style="resize: none;" name="Image" id="Image" placeholder="Selecione a imagem da categoria"></textarea>
+                        </td>
+                        <td><button>Enviar</button></td>
+                    </form>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </body>
 </html>

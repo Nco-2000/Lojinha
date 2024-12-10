@@ -49,7 +49,7 @@ router.post('/Edit/:ID_Category', async(req, res) => {
 
     try{
         const category = await Category.findByPk(ID_Category)
-        res.render('Categories/EditCategory', {category});
+        res.render('Categories/EditCategory', {category, success : true});
     }catch{
         res.send("<h1>Could not get the category.</h1>")
     }

@@ -3,25 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
+
 </head>
 <body>
-    <% if (success == false) { %>
-        <h1>No categories exist</h1>
-    <% } else{ %>
-        <% Category.forEach(cat => { %>
-            <%= cat.Name %>
-            <%= cat.Qtd_items %>
-            <%= cat.image_id %>
-            <form action="/Categories/Edit/<%= cat.ID_Category%>" method="post">
-                <input type="submit" value="Edit">
-            </form>
-            <form id="submit"  class="submit-form" action="/Categories/Delete/<%= cat.ID_Category %>?_method=DELETE" method="post">
-                <input type="submit" value="Remove Category">
-            </form>
-            <br>
-        <% }) %> 
-    <% } %>    
+  <%- include('../navbar.ejs') %>
+  <table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade de Items</th>
+            <th>ID Imagems</th>
+            <th>EDIT</th>
+            <th>REMOVE</th>
+        </tr>
+    </thead>
+      <tbody>
+        <% if (success == false) { %>
+          <tr>
+            <h1>No categories exist</h1>
+          </tr>
+        <% } else{ %>
+            <% Category.forEach(cat => { %>
+              <tr>
+                <td><%= cat.Name %></td>
+                <td><%= cat.Qtd_items %></td>
+                <td><%= cat.image_id %></td>
+                <td><form action="/Categories/Edit/<%= cat.ID_Category%>" method="post">
+                    <input type="submit" value="Edit">
+                </form></td>
+                <td><form id="submit"  class="submit-form" action="/Categories/Delete/<%= cat.ID_Category %>?_method=DELETE" method="post">
+                    <input type="submit" value="Remove Category">
+                </form></td>
+                <br>
+              </tr>
+            <% }) %> 
+        <% } %> 
+      </tbody> 
+    </table>  
 </body>
 <script>
     // Get form element
