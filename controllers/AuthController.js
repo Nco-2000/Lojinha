@@ -1,4 +1,4 @@
-const {Client, Admin} = require('../models')
+const {Client, Admin, Order, ItemOrder} = require('../models')
 const {Router} = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -130,6 +130,7 @@ router.patch('/Profile/Edit/:ID_Client', async(req,res)=>{
       
         try{
             const updated_client = Client.update({Name, Password, Address, Phone}, {where: {ID_Client : ID_Client}} )
+
             if(updated_client){
                 res.redirect('/Auth/Profile')
             }
@@ -141,11 +142,70 @@ router.patch('/Profile/Edit/:ID_Client', async(req,res)=>{
         res.send("<h1>Error updating the Profile</h1>")
         
     }
-
-
-
-
 })
+
+router.delete('/Profile/Delete/:ID_Client', verifyToken, async (req, res) => {
+    const { ID_Client } = req.params;
+
+    try {
+        const deleted = await Client.destroy({ where: { ID_Client: ID_Client } });
+
+        if (deleted) {
+            const orders = await Order.findAll({ where: { Client_id: ID_Client } });
+
+            for (let order of orders) {
+                const order_id = order.ID_ORDER;
+                const item_orders = await ItemOrder.findAll({ where: { Order_id: order_id } });
+
+                for (let item of item_orders) {
+                    await item.destroy();
+                }
+            }
+            await Order.destroy({ where: { Client_id: ID_Client } });
+
+
+            res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Strict' });
+
+
+
+            res.redirect('/Auth/Cadastro');
+        } else {
+            res.send('<h1>The client does not exist</h1>');
+        }
+    } catch (error) {
+        console.error(error);
+        res.send('<h1>Error deleting client</h1>');
+    }
+});
+
+
+router.get('/Users', verifyToken, async(req, res) =>{
+    if(req.user.role == "Admin"){
+        
+        try{
+            Client.findAll().then(client =>{
+                if(client.length > 0){
+                    res.render('Auth/ViewUsers', {Success : true, Clients : client});
+                }else{
+                    res.render('Auth/ViewUsers', {success : false})
+                }
+            })
+        }catch{
+            res.render('Auth/ViewUsers', {success : false})
+        }
+    }
+    else{
+        res.redirect('/')
+    }
+})
+
+
+
+
+
+
+
+
 
 
 

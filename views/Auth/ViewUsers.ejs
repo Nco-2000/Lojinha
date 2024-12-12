@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %>
+    <table>
+    <thead>
+        <tr>
+            <th>ID do cliene</th>
+            <th>Nome cliente</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+        </tr>
+    </thead>
+      <tbody>
+        <% if (Success == false) { %>
+            <tr>
+            <h1>Não existem usuarios</h1>
+            </tr>
+        <% } else{ %>
+            <% Clients.forEach(Client => { %>
+                <tr>
+                    <td><%= Client.ID_Client %></td>
+                    <td><%= Client.Name %></td>
+                    <td><%= Client.Email %></td>
+                    <td><%= Client.Phone %></td>
+                    <td><%= Client.Address %></td>
+                </tr>
+                
+            <% }) %>
+        <% } %>  
+        </tbody> 
+    </table>  
+</body>
+</html>

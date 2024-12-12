@@ -65,7 +65,6 @@ router.patch('/Edit/:ID_Category', async(req, res) => {
     if(category_found){
         res.send("<h1>A category with this name already exists</h1>")
     }
-
     else{
         try{
             const updated_category = await Category.update({Name : Name}, {where: {ID_Category : ID_Category}} )
