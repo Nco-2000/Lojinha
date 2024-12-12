@@ -28,10 +28,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><textarea name="Name" id="Name" placeholder="Digite o nome do produto"></textarea></td>
-                                    <td><textarea name="Stock" id="Stock" placeholder="Digite o valor inicial de estoque"></textarea></td>
-                                    <td><textarea name="Price" id="Price" placeholder="Digite o Preço base do produto"></textarea></td>
-                                    <td><textarea name="Weight" id="Weight" placeholder="Digite o peso do produto"></textarea></td>
+                                    <td><textarea name="Name" id="Name" placeholder="<%= product.Name %>"></textarea></td>
+                                    <td><textarea name="Stock" id="Stock" placeholder="<%= product.Stock %>"></textarea></td>
+                                    <td><textarea name="Price" id="Price" placeholder="<%= product.Price %>"></textarea></td>
+                                    <td><textarea name="Category_name" id="Category_name" placeholder="<%= product.Category_id %>"></textarea></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -46,10 +46,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><textarea name="Size" id="Size" placeholder="Digite as dimensões do produto"></textarea></td>
-                                    <td><textarea name="Color" id="Color" placeholder="Digite a cor/cores do produto"></textarea></td>
-                                    <td><textarea name="Description" id="Description" placeholder="Digite a descrição do produto"></textarea></td>
-                                    <td><textarea name="Category_name" id="Category_name" placeholder="Digite a categoria do produto"></textarea></td>
+                                    <td><textarea name="Weight" id="Weight" placeholder="<%= product.Weight %>"></textarea></td>
+                                    <td><textarea name="Color" id="Color" placeholder="<%= product.Color %>"></textarea></td>
+                                    <td><textarea name="Size" id="Size" placeholder="<%= product.Size %>"></textarea></td>
+                                    <td><textarea name="Description" id="Description" placeholder="<%= product.Description %>"></textarea></td>
                                 </tr>
                             </tbody>
                         </table>    

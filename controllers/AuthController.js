@@ -69,8 +69,86 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({ message: 'You are authenticated!', user: req.user });
+
+
+
+router.get('/Profile', verifyToken, async(req,res)=>{
+    const token = req.cookies.token;
+    var success = false;
+    console.log(token)
+    if (!token) {
+        res.redirect('/Auth/Login');
+    }
+    else{
+        const user_found = await Client.findOne({where: {ID_Client : req.user.id}});
+
+        if(user_found){
+            res.render('Auth/Profile', {user: user_found, success : true});
+        }
+        else{
+            res.render('Auth/Profile', {success : false});
+        }
+    }
 });
+
+router.post('/Profile/Edit/:id' , verifyToken, async(req,res)=>{
+    const {id} = req.params
+    const token = req.cookies.token;
+    if (!token) {
+        res.redirect('/Auth/Login');
+    }
+    else{
+        const user_found = await Client.findOne({where: {ID_Client : id}});
+        if(user_found){
+            res.render('Auth/EditProfile', {user : user_found});
+        }
+        else{
+            res.redirect('/Auth/Login');
+        }
+    }
+})
+
+router.patch('/Profile/Edit/:ID_Client', async(req,res)=>{
+    var {Name, Phone, Password, Address} = req.body
+    const {ID_Client} = req.params
+
+    const client_found = await Client.findByPk(ID_Client);
+    if(client_found){
+
+        if(Name == ""){
+            Name = client_found.Name
+        }
+        if(Password == ""){
+            Password = client_found.Password
+        }
+        if(Address == ""){
+            Address = client_found.Address
+        }
+        if(Phone == ""){
+            Phone = client_found.Phone
+        }
+      
+        try{
+            const updated_client = Client.update({Name, Password, Address, Phone}, {where: {ID_Client : ID_Client}} )
+            if(updated_client){
+                res.redirect('/Auth/Profile')
+            }
+        }catch{
+            res.send("<h1>Error updating the Profile</h1>")
+        }
+    }
+    else{
+        res.send("<h1>Error updating the Profile</h1>")
+        
+    }
+
+
+
+
+})
+
+
+
+
 
 module.exports = router;

@@ -1,11 +1,11 @@
 const AuthController = require('./AuthController');
 const CategoriesController = require('./CategoriesController');
-const ProductsCOntroller = require('./ProductsController');
+const ProductsController = require('./ProductsController');
 const OrdersController = require('./OrdersController');
 controllers = {
     Auth: AuthController,
     Category : CategoriesController,
-    Product : ProductsCOntroller,
+    Product : ProductsController,
     Order : OrdersController,
 }
 

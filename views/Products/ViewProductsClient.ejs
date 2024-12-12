@@ -12,7 +12,7 @@
         <h1>No Products exist</h1>
     <% } else{ %>
         <% products.forEach(product => { %>
-            <a href="/products/<%= product.ID_Product %>"><%= product.Name %></a>
+            <a href="/products/Details/<%= product.ID_Product %>"><%= product.Name %></a>
             R$<%= product.Price %>
             <br>
         <% }) %> 

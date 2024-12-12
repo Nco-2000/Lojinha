@@ -45,7 +45,7 @@ router.get('/', verifyToken, async(req, res) => {
 })
 
 //ver mais informaçoes de um produto
-router.get('/:ID_Product', async (req, res)=>{
+router.get('/Details/:ID_Product', async (req, res)=>{
     const {ID_Product} = req.params
 
     const product = await Product.findByPk(ID_Product);
@@ -54,25 +54,15 @@ router.get('/:ID_Product', async (req, res)=>{
     }else{
         res.redirect('/');
     }
-
-
-
 })
 
 
 
 
-
-
-
-
-
-
-
-//Adicionar Produto.
-router.get('/New', async(req, res) => {
+router.get('/New', async(req, res, next) => {
+    console.log('GET /Products/New route triggered');
     res.render('Products/AddProduct');
-})
+});
 
 router.post('/New', async(req, res) => {
     const {Name, Category_name, Stock, Price, Weight, Size, Color, Description} = req.body
@@ -112,16 +102,42 @@ router.post('/Edit/:ID_Product', async(req, res) => {
 
 
 router.patch('/Edit/:ID_Product', async(req, res) => {
-    const {Name, Stock, Price, Category_id, Weight, Size, Color, Description} = req.body
+    var {Name, Stock, Price, Category_id, Weight, Size, Color, Description} = req.body
     const {ID_Product} = req.params
-
 
     const Product_found = await Product.findByPk(ID_Product);
     if(Product_found){
+
+        if(Name == ""){
+            Name = Product_found.Name
+        }
+        if(Stock == ""){
+            Stock = Product_found.Stock
+        }
+        if(Price == ""){
+            Price = Product_found.Price
+        }
+        if(Category_id == ""){
+            Category_id = Product_found.Category_id
+        }
+        if(Weight == ""){
+            Weight = Product_found.Weight
+        }
+        if(Size == ""){
+            Size = Product_found.Size
+        }
+        if(Color == ""){
+            Color = Product_found.Color
+        }
+        if(Description == ""){
+            Description = Product_found.Description
+        }
+
         try{
             const updated_product = Product.update({Name, Stock, Price, Category_id, Weight, Size, Color, Description}, {where: {ID_Product : ID_Product}} )
-            console.log(updated_product)
-            res.redirect('/products')
+            if(updated_product){
+                res.redirect('/products')
+            }
         }catch{
             res.send("<h1>Error updating the category</h1>")
         }

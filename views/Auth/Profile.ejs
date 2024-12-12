@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/auth/ProfileStyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %>
+
+    <body>
+
+        <div class="container">
+            <div class="profile-header">
+                <h2>Perfil</h2>
+
+            </div>
+    
+            <div class="profile-details">
+                <div class="user-data-box"><h3>Nome: <%= user.Name %></h3></div>
+                <div class="user-data-box"><h3>Password: <%= user.Password %></h3></div>
+                <div class="user-data-box"><h3>Email: <%= user.Email %></h3></div>
+                <div class="user-data-box"><h3>Telefone: <%= user.Phone %></h3></div>
+                <div class="user-data-box"><h3>Endereço: <%= user.Address %></h3></div>
+                <form action="Profile/Edit/<%= user.ID_Client %>" method="POST">
+                    <input type="submit" value="EDITAR">
+                </form>
+                <form action="Profile/Edit/<%= user.ID_Client %>" method="POST">
+                    <input type="submit" value="DELETAR CONTA">
+                </form>
+            </div>
+        </div>
+    </body>
+</body>
+</html>

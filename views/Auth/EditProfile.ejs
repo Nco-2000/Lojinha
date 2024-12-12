@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/table.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %>
+
+            <form class="product" action="/Auth/Profile/Edit/<%= user.ID_Client %>?_method=PATCH" method="POST">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Senha</th>
+                            <th>Telefone</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><textarea name="Name" id="Name" placeholder="<%= user.Name %>"></textarea></td>
+                            <td><textarea name="Address" id="Address" placeholder="<%= user.Address %>"></textarea></td>
+                            <td><textarea name="Password" id="Password" placeholder="<%= user.Password %>"></textarea></td>
+                            <td><textarea name="Phone" id="Phone" placeholder="<%= user.Phone %>"></textarea></td>
+                        </tr>
+                    </tbody>
+
+            </tbody>
+        </table>
+        <div class="row justify-content-center">
+            <button class="col-lg-3">ENVIAR</button>
+            <button class="col-lg-3">DELETAR</button>
+        </div>
+    </form>
+
+
+
+</body>
+</html>

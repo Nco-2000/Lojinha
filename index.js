@@ -41,16 +41,21 @@ app.set('views', path.join(__dirname, 'views'));
 //Define 'public', necessário para usar css com ejs.
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 //Rotas...
-
-app.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({ message: 'Protected route, you are authenticated' });
-});
-
 app.use('/Auth', Auth)
 app.use('/Categories', Category)
 app.use('/Products', Product)
 app.use('/Order', Order)
+
+app.use((req, res) => {
+    console.log(`Middleware processing request: ${req.method} ${req.url}`);
+   
+    res.status(404).send('Page not found');
+});
+
+
 
 app.listen(port, () => {
     console.log('Working on port: ' + port);
