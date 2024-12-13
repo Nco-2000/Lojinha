@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/table.css">
-    <title>Document</title>
+    <title>Produtos</title>
 </head>
 <body>
     <%- include('../navbar.ejs') %>
@@ -23,35 +23,41 @@
                 <th>REMOVE</th>
             </tr>
         </thead>
-          <tbody>
+        <tbody>
             <% if (success == false) { %>
               <tr>
-                <h1>No Products exist</h1>
+                <td colspan="10">
+                  <h1>No Products exist</h1>
+                </td>
               </tr>
-            <% } else{ %>
-                <% products.forEach(product => { %>
-                  <tr>
-                    <td><%= product.Name %></td>
-                    <td><%= product.Stock %></td>
-                    <td>R$<%= product.Price %></td>
-                    <td><%= product.Category_id %></td>
-                    <td><%= product.Weight %></td>
-                    <td><%= product.Color %></td>
-                    <td><%= product.Size %></td>
-                    <td><%= product.Description %></td>
-                    <td><form action="/Products/Edit/<%= product.ID_Product%>" method="post">
-                        <input type="submit" value="Edit Product">
-                    </form></td>
-                    <td><form id="submit"  class="submit-form" action="/Products/Delete/<%= product.ID_Product %>?_method=DELETE" method="post">
-                        <input class="btn btn-danger"type="submit" value="Remove Product">
-                    </form></td>
-                    <br>
-                  </tr>
-                <% }) %> 
-            <% } %> 
-          </tbody> 
-        </table>
-        <form action="Products/New" method="get">
-          <button class="btn btn-danger">Add new Product</button>
-        </form>
+            <% } else { %>
+              <% products.forEach(product => { %>
+                <tr>
+                  <td data-label="Nome"><%= product.Name %></td>
+                  <td data-label="Estoque"><%= product.Stock %></td>
+                  <td data-label="Preço">R$<%= product.Price %></td>
+                  <td data-label="Categoria"><%= product.Category_id %></td>
+                  <td data-label="Peso"><%= product.Weight %></td>
+                  <td data-label="Cor"><%= product.Color %></td>
+                  <td data-label="Tamanho"><%= product.Size %></td>
+                  <td data-label="Descrição"><%= product.Description %></td>
+                  <td data-label="EDIT">
+                    <form action="/Products/Edit/<%= product.ID_Product %>" method="post">
+                      <input type="submit" value="Edit Product">
+                    </form>
+                  </td>
+                  <td data-label="REMOVE">
+                    <form class="submit-form" action="/Products/Delete/<%= product.ID_Product %>?_method=DELETE" method="post">
+                      <input class="btn btn-danger" type="submit" value="Remove Product">
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+    <form action="Products/New" method="get">
+        <button class="btn btn-danger">Add new Product</button>
+    </form>
 </body>
+</html>
