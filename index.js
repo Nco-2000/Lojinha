@@ -49,6 +49,12 @@ app.use('/Categories', Category)
 app.use('/Products', Product)
 app.use('/Order', Order)
 
+app.use('/', (req, res)=>{
+    res.redirect('/Auth/Cadastro')
+})
+
+
+
 app.use((req, res) => {
     console.log(`Middleware processing request: ${req.method} ${req.url}`);
    

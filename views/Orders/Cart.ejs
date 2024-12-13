@@ -1,25 +1,48 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
 </head>
 <body>
-    <% if (success == false) { %>
-        <h1>O carrinho esta vazio</h1>
-    <% } else{ %>
-        <h2>Seu Carrinho:</h2><br>
-        <% listaDados.forEach(Dado => { %>
-            Name: <%= Dado.Name %><br>
-            Quantidade: <%= Dado.qtd %><br>
-            Preço Unidade: R$<%= Dado.Price_prod %><br>
-            PReço total: R$<%= Dado.Price_total %><br>
-            <br>
-            <br>
-        <% }) %> 
+    <%- include('../navbar.ejs') %>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unidade</th>
+                <th>Preço total</th>
+                <th>Remover do carrinho</th>
+            </tr>
+        </thead>
+          <tbody>
+            <% if (success == false) { %>
+              <tr>
+                <h1>No Products exist</h1>
+              </tr>
+            <% } else{ %>
+                <% listaDados.forEach(Dado => { %>
+                  <tr>
+                    <td><a href="/products/Details/<%= Dado.ID_Product %>"><%= Dado.Name %></a></td>
+                    <td><%= Dado.qtd %></td>
+                    <td>R$<%= Dado.Price_prod %></td>
+                    <td>R$<%= Dado.Price_total %></td>
+                    <td><form action="/Order/Remove/<%= Dado.ID_Product %>?_method=DELETE" method="post">
+                        <input type="submit" value="Remover">
+                    </form></td>
+                  </tr>
+                <% }) %> 
+                <% } %> 
+            </tbody> 
+        </table>
+        Valor total: <%=  Price_Order%>
         <form action="/products" method="get">
             <input type="submit" value="Finalizar compra">
         </form>
-    <% } %>    
 </body>
+</html>

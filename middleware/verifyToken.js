@@ -6,7 +6,7 @@ function verifyToken(req, res, next) {
   const token = req.cookies.token || req.headers['authorization']?.split(' ')[1]; // Check cookie or Authorization header
   // If no token is found, send an error
   if (!token) {
-    return res.status(401).json({ message: 'Access denied. No token provided.' });
+    return res.redirect('/Auth/login');
   }
 
   try {

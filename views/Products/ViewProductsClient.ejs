@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/table.css">
     <title>Document</title>
 </head>
 <body>
     <%- include('../navbar.ejs') %>
-    
-    <% if (success == false) { %>
-        <h1>No Products exist</h1>
-    <% } else{ %>
-        <% products.forEach(product => { %>
-            <a href="/products/Details/<%= product.ID_Product %>"><%= product.Name %></a>
-            R$<%= product.Price %>
-            <br>
-        <% }) %> 
-    <% } %>    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Preço</th>
+                <th>Peso</th>
+                <th>Cor</th>
+                <th>Tamanho</th>
+            </tr>
+        </thead>
+          <tbody>
+            <% if (success == false) { %>
+              <tr>
+                <h1>No Products exist</h1>
+              </tr>
+            <% } else{ %>
+                <% products.forEach(product => { %>
+                  <tr>
+                    <td><a href="/products/Details/<%= product.ID_Product %>"><%= product.Name %></a></td>
+                    <td><%= product.Stock %></td>
+                    <td>R$<%= product.Price %></td>
+                    <td><%= product.Color %></td>
+                    <td><%= product.Size %></td>
+                    <td><%= product.Description %></td>
+
+                  </tr>
+                <% }) %> 
+            <% } %> 
+          </tbody> 
+        </table>
 </body>
+</html>

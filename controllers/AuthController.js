@@ -75,7 +75,6 @@ router.post('/login', async (req, res) => {
 router.get('/Profile', verifyToken, async(req,res)=>{
     const token = req.cookies.token;
     var success = false;
-    console.log(token)
     if (!token) {
         res.redirect('/Auth/Login');
     }
@@ -201,7 +200,10 @@ router.get('/Users', verifyToken, async(req, res) =>{
 
 
 
-
+router.get('/Deslogar',async (req,res)=>{
+    res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Strict' });
+    res.redirect('cadastro')
+})
 
 
 
