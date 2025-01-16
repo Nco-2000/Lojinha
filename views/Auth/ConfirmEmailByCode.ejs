@@ -18,17 +18,13 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                        <h1 class="text-center mb-4">Login</h1>
-                        <form action="/Auth/login" method="POST">
+                        <h1 class="text-center mb-4">Confirmação</h1>
+                        <form action="/Auth/ConfirmCode" method="POST">
                             <div class="form-group">
-                                <label for="Email">Email</label>
-                                <input type="email" class="form-control" id="Email" name="Email" placeholder="Digite o email" required>
+                                <h1 class="text-center mb-4">######</h1>
+                                <input type="text" class="form-control" id="AuthCode" name="AuthCode" placeholder="Digite o codigo" required>
                             </div>
-                            <div class="form-group">
-                                <label for="Password">Senha</label>
-                                <input type="password" class="form-control" id="Password" name="Password" placeholder="Digite sua senha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                            <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
                         </form>
                         </div>
                     </div>

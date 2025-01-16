@@ -1,0 +1,22 @@
+LOGIN
+1. Confirmar email na hora de cadastro;
+2. Cadastrar e logar com facebook/instagran;
+
+DESIGN
+3. Melhorar responsibilidade da navbar quando tiver tamanho menor;
+4. Melhorar design da pagina de produtos;
+5. Melhorar design do prefil (Adicionar historico de compras, Nao deixar horrendo);
+6. Fazer navbar mudar quando usuario ja estiver autenticado (nao mostrar "login" quando ja logado, nao mostrar perfil quando nao logado, so mostrar sair quando logado);
+7. Adcionar adição de imagens para categorias, itens e produtos;
+
+COMPRA/CARRINHO
+8. Fazer com que seja possivel finalizar a compra;
+9. Adicionar previsao de frete;
+10. Adicionar acompanhamento de status do pedido;
+11. Adcionar previsão de entrega; 
+
+BANCO
+12. Permitir que um produto partice de multiplas categorias;
+13. Melhorar segurança em relação a deletar produtos, categorias e compras;
+14. Adicionar tabela que registre os produtos, categorias e compras que foram deletados para que memso após deletar uma delas haja um registro de unidades vendidas etc;
+

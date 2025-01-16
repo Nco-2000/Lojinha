@@ -199,6 +199,12 @@ router.get('/Users', verifyToken, async(req, res) =>{
 })
 
 
+router.get('/ConfirmEmail', (req,res)=>{
+    res.render('Auth/ConfirmEmailByCode');
+})
+
+
+
 
 router.get('/Deslogar',async (req,res)=>{
     res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Strict' });

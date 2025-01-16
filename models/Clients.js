@@ -50,7 +50,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true},
     Postal_code: {
       type: DataTypes.STRING,
-      allowNull: true},    
+      allowNull: true},  
+    Confirmation_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true},
+    Confirmation_code: {
+      type: DataTypes.STRING,
+      allowNull: true}, 
+  
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   });
